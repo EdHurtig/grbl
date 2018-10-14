@@ -136,7 +136,7 @@ Every G-code block sent to Grbl and Grbl `$` system command that is terminated w
 
 * **`error:X`**: Something went wrong! Grbl did not recognize the command and did not execute anything inside that message. The `X` is given as a numeric error code to tell you exactly what happened. The table below decribes every one of them.
 
-	| ID | Error Code Description |
+| ID | Error Code Description |
 |:-------------:|----|
 | **`1`** | G-code words consist of a letter and a value. Letter was not found. |
 | **`2`** | Numeric value format is not valid or missing an expected value. |
@@ -240,7 +240,7 @@ When a push message starts with a `$`, this indicates Grbl is sending a setting 
 
   - The `$$` settings print out is shown below and the following describes each setting.
 
-    ```
+```
 $0=10
 $1=25
 $2=0
@@ -278,7 +278,7 @@ $132=200.000
 ok
 ```
 
-	| `$x` Code | Setting Description, Units |
+| `$x` Code | Setting Description, Units |
 |:-------------:|----|
 | **`0`** | Step pulse time, microseconds |
 | **`1`** | Step idle delay, milliseconds |
@@ -319,11 +319,11 @@ ok
 - The other `$Nx=line` message is the print-out of a user-defined startup line, where `x` denotes the startup line order and ranges from `0` to `1` by default. The `line` denotes the startup line to be executed by Grbl upon reset or power-up, except during an ALARM.
 
   - When a user queries for the startup lines via a `$N` command, the following is sent by Grbl and completed by an `ok` response. The first line sets the initial startup work coordinate system to `G54`, while the second line is empty and does not execute.
-  ```
+```
   $N0=G54
   $N1=
   ok
-  ```
+```
 
 
 ------
@@ -386,10 +386,9 @@ Feedback messages provide non-critical information on what Grbl is doing, what i
 
 
   - The `$#` print parameter data query produces a large set of data which shown below and completed by an `ok` response message.
-
     	- Each line of the printout is starts with the data type, a `:`, and followed by the data values. If there is more than one, the order is XYZ axes, separated by commas.
 
-      		```
+      ```
       [G54:0.000,0.000,0.000]
       [G55:0.000,0.000,0.000]
       [G56:0.000,0.000,0.000]
@@ -403,8 +402,7 @@ Feedback messages provide non-critical information on what Grbl is doing, what i
       [PRB:0.000,0.000,0.000:0]
       ok
       ```
-
-    	- The `PRB:` probe parameter message includes an additional `:` and suffix value is a boolean. It denotes whether the last probe cycle was successful or not.
+      - The `PRB:` probe parameter message includes an additional `:` and suffix value is a boolean. It denotes whether the last probe cycle was successful or not.
 
   - `[VER:]` and `[OPT:]`: Indicates build info data from a `$I` user query. These build info messages are followed by an `ok` to confirm the `$I` was executed, like so:
  
@@ -414,11 +412,11 @@ Feedback messages provide non-critical information on what Grbl is doing, what i
       ok
       ```
       
-  		- The first line `[VER:]` contains the build version and date.
+      - The first line `[VER:]` contains the build version and date.
       - A string may appear after the second `:` colon. It is a stored EEPROM string a user via a `$I=line` command or OEM can place there for personal use or tracking purposes.
   		- The `[OPT:]` line follows immediately after and contains character codes for compile-time options that were either enabled or disabled and two values separated by commas, which indicates the total usable planner blocks and serial RX buffer bytes, respectively. The codes are defined below and a CSV file is also provided for quick parsing. This is generally only used for quickly diagnosing firmware bugs or compatibility issues. 
 
-			| `OPT` Code | Setting Description, Units |
+| `OPT` Code | Setting Description, Units |
 |:-------------:|----|
 | **`V`** | Variable spindle enabled |
 | **`N`** | Line numbers enabled |
